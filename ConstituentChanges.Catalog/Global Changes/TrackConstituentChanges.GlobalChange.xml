@@ -6,7 +6,7 @@
 	Description="Looks for changes to constituent records and logs them"
 	Author="Joseph Styons"
 	DisplayName="Track Constituent Changes Global Change"
-	GlobalChangeFolder="Track Constituent Changes"
+	GlobalChangeFolder="Constituent"
 	SPName="USP_GLOBALCHANGE_TRACKCONSTITUENTCHANGES"
 >
 
