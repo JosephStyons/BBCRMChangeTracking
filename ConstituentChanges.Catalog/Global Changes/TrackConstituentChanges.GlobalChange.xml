@@ -3,7 +3,7 @@
 	xmlns:c="bb_appfx_commontypes"
 	ID="a73c2bf5-a742-44de-ae20-011b5b5b0ccb"
 	Name="Track Constituent Changes Global Change"
-	Description="REPLACE_WITH_DESCRIPTION"
+	Description="Looks for changes to constituent records and logs them"
 	Author="Joseph Styons"
 	DisplayName="Track Constituent Changes Global Change"
 	GlobalChangeFolder="Track Constituent Changes"
