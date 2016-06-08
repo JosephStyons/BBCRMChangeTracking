@@ -1,0 +1,17 @@
+﻿<TableSpec
+  xmlns="bb_appfx_table"
+  xmlns:c="bb_appfx_commontypes"
+  ID="2077b684-97ed-4d44-b833-950b0ffc2b59"
+  Name="Changed Constituents"
+  Description="Stores information about changed constituent records"
+  Author="Joseph Styons"
+  Tablename="USR_CHANGEDCONSTITUENTS"
+  IsBuiltIn="false"
+  WarnOnMissingIndexes="false"
+  >
+  <Fields>
+    <ForeignKeyField Name="CONSTITUENTID" ForeignTable="CONSTITUENT"/>
+    <TextField Name="CHANGETYPE" Length="100"/>
+    <TextField Name="MESSAGE" Length="4000"/>
+  </Fields>
+</TableSpec>

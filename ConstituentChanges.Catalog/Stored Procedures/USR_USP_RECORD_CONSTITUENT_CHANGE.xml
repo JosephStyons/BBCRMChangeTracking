@@ -1,0 +1,35 @@
+﻿<SQLStoredProcedureSpec
+  xmlns="bb_appfx_sqlstoredprocedure"
+  xmlns:c="bb_appfx_commontypes" 
+  ID="3e6634a4-c7cd-4e76-9531-d07d5ee08e2f"
+  Name="USR_USP_RECORD_CONSTITUENT_CHANGE"
+  Description="Process a changed constituent"
+  Author="Joseph Styons"
+  SPName="USR_USP_RECORD_CONSTITUENT_CHANGE"
+  >
+
+	<CreateProcedureSQL>
+		<![CDATA[
+create procedure dbo.USR_USP_RECORD_CONSTITUENT_CHANGE
+(
+  @ID uniqueidentifier output
+ ,@CONSTITUENTID uniqueidentifier
+ ,@CHANGETYPE nvarchar(100)
+ ,@CHANGEAGENTID uniqueidentifier
+)
+as
+begin
+  --accept the ID of a constituent who has changed.
+  --do something to record the change.
+  
+  set @id = isnull(@id,newid());
+  declare @now datetime = getdate();
+
+  INSERT INTO dbo.USR_CHANGEDCONSTITUENTS
+    (ID,CONSTITUENTID,MESSAGE,CHANGETYPE,ADDEDBYID,CHANGEDBYID,DATEADDED,DATECHANGED)
+  VALUES
+    (@ID,@CONSTITUENTID,'Change recorded',@CHANGETYPE,@CHANGEAGENTID,@CHANGEAGENTID,@NOW,@NOW);
+end
+		]]>
+	</CreateProcedureSQL>
+</SQLStoredProcedureSpec>
