@@ -1,11 +1,11 @@
 ﻿<TableSpec
   xmlns="bb_appfx_table"
   xmlns:c="bb_appfx_commontypes"
-  ID="2077b684-97ed-4d44-b833-950b0ffc2b59"
+  ID="F2AD5EE1-D09F-4543-A200-371E1B2F3CD6"
   Name="Changed Constituents"
   Description="Stores information about changed constituent records"
   Author="Joseph Styons"
-  Tablename="USR_CHANGEDCONSTITUENTS"
+  Tablename="USR_CHANGELOG_CONSTITUENT"
   IsBuiltIn="false"
   WarnOnMissingIndexes="false"
   >

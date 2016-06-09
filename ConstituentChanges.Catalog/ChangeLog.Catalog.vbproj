@@ -7,8 +7,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{8A429992-E5D5-400C-B7CF-2811E586A495}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>ConstituentChanges.Catalog</RootNamespace>
-    <AssemblyName>ConstituentChanges.Catalog</AssemblyName>
+    <RootNamespace>ChangeLog.Catalog</RootNamespace>
+    <AssemblyName>ChangeLog.Catalog</AssemblyName>
     <MyType>Windows</MyType>
     <OptionStrict>Off</OptionStrict>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -84,25 +84,16 @@
     <Compile Include="My Project\AssemblyInfo.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Constituents\USR_USP_CHANGED_CONSTITUENTS.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Constituents\TrackConstituentChanges.GlobalChange.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Constituents\ChangedConstituents.Table.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Constituents\USR_USP_RECORD_CONSTITUENT_CHANGE.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Addresses\RecordChanges.Addresses.GlobalChange.xml" />
     <EmbeddedResource Include="Addresses\ChangeLog.Addresses.Table.xml" />
     <EmbeddedResource Include="Addresses\GetChangedAddresses.StoredProcedure.xml" />
     <EmbeddedResource Include="Addresses\ChangeLog.Addresses.StoredProcedure.xml" />
     <EmbeddedResource Include="Shared items\RecordChanges.GlobalChangeStatus.Table.xml" />
+    <EmbeddedResource Include="Constituents\ChangeLog.Constituents.StoredProcedure.xml" />
+    <EmbeddedResource Include="Constituents\ChangeLog.Constituents.Table.xml" />
+    <EmbeddedResource Include="Constituents\GetChangedConstituents.StoredProcedure.xml" />
+    <EmbeddedResource Include="Constituents\RecordChanges.Constituents.GlobalChange.xml" />
+    <EmbeddedResource Include="Shared items\ChangeLog.Package.xml" />
     <Content Include="sql\performance debugging script.sql" />
   </ItemGroup>
   <ItemGroup />

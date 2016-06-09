@@ -1,0 +1,25 @@
+<PackageSpec
+  xmlns="bb_appfx_package"
+  xmlns:c="bb_appfx_commontypes"
+  ID="df8502ec-5a94-49a4-97ad-d5258da8e6af"
+  Name="Change Log Package"
+  Description="A package defining specs related to change log records"
+  Author="Joseph Styons"
+  >
+  <c:DependencyList>
+    <!--Shared items-->
+    <c:Dependency CatalogAssembly="ConstituentChanges.Catalog.dll" CatalogItem="ConstituentChanges.Catalog.RecordChanges.GlobalChangeStatus.Table.xml" />
+    
+    <!--Constituents-->
+    <c:Dependency CatalogAssembly="ConstituentChanges.Catalog.dll" CatalogItem="ConstituentChanges.Catalog.ChangeLog.Constituents.Table.xml" />
+    <c:Dependency CatalogAssembly="ConstituentChanges.Catalog.dll" CatalogItem="ConstituentChanges.Catalog.ChangeLog.Constituents.StoredProcedure.xml" />
+    <c:Dependency CatalogAssembly="ConstituentChanges.Catalog.dll" CatalogItem="ConstituentChanges.Catalog.GetChangedConstituents.StoredProcedure.xml" />
+    <c:Dependency CatalogAssembly="ConstituentChanges.Catalog.dll" CatalogItem="ConstituentChanges.Catalog.RecordChanges.Constituents.GlobalChange.xml" />
+    
+    <!--Addresses-->
+    <c:Dependency CatalogAssembly="ConstituentChanges.Catalog.dll" CatalogItem="ConstituentChanges.Catalog.ChangeLog.Addresses.Table.xml" />
+    <c:Dependency CatalogAssembly="ConstituentChanges.Catalog.dll" CatalogItem="ConstituentChanges.Catalog.ChangeLog.Addresses.StoredProcedure.xml" />
+    <c:Dependency CatalogAssembly="ConstituentChanges.Catalog.dll" CatalogItem="ConstituentChanges.Catalog.GetChangedAddresses.StoredProcedure.xml" />
+    <c:Dependency CatalogAssembly="ConstituentChanges.Catalog.dll" CatalogItem="ConstituentChanges.Catalog.RecordChanges.Addresses.GlobalChange.xml" />
+  </c:DependencyList>
+</PackageSpec>

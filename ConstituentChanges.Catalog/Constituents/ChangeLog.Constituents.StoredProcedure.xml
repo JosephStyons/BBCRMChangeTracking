@@ -1,7 +1,7 @@
 ﻿<SQLStoredProcedureSpec
   xmlns="bb_appfx_sqlstoredprocedure"
   xmlns:c="bb_appfx_commontypes" 
-  ID="3e6634a4-c7cd-4e76-9531-d07d5ee08e2f"
+  ID="FF489B4E-10ED-475D-BE58-CA6F052BE22D"
   Name="USR_USP_RECORD_CONSTITUENT_CHANGE"
   Description="Process a changed constituent"
   Author="Joseph Styons"
@@ -25,7 +25,7 @@ begin
   set @id = isnull(@id,newid());
   declare @now datetime = getdate();
 
-  INSERT INTO dbo.USR_CHANGEDCONSTITUENTS
+  INSERT INTO dbo.USR_CHANGELOG_CONSTITUENT
     (ID,CONSTITUENTID,MESSAGE,CHANGETYPE,ADDEDBYID,CHANGEDBYID,DATEADDED,DATECHANGED)
   VALUES
     (@ID,@CONSTITUENTID,'Change recorded',@CHANGETYPE,@CHANGEAGENTID,@CHANGEAGENTID,@NOW,@NOW);

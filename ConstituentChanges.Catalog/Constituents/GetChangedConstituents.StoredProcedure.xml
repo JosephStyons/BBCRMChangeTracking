@@ -1,0 +1,39 @@
+﻿<SQLStoredProcedureSpec
+  xmlns="bb_appfx_sqlstoredprocedure"
+  xmlns:c="bb_appfx_commontypes"
+  ID="28FA32CC-00D8-4B8A-8A5A-CD78876C44AC"
+  Name="USR_USP_CHANGED_CONSTITUENTS"
+  Description="Given a time, return all constituentes with an important change since that time."
+  Author="Joseph Styons"
+  SPName="USR_USP_CHANGED_CONSTITUENTS"
+  >
+  <CreateProcedureSQL>
+    <![CDATA[
+create procedure dbo.USR_USP_CHANGED_CONSTITUENTS
+(
+  @SINCE datetime
+)
+as
+begin
+  select distinct id, 'New'               --inserts
+  from constituent ad
+  where ad.DATEADDED > @since
+
+  union
+
+  select distinct id, 'Changed'           --updates
+  from constituent a
+  where a.DATECHANGED > @since
+
+  union
+
+  select distinct aa.auditrecordid, 'Deleted'           --deletes
+  from
+   CONSTITUENTAUDIT aa
+   left join constituent a on a.id = aa.auditrecordid
+  where aa.AUDITDATE > @since                         
+    and aa.AUDITTYPECODE = 2                  --"2" == "BEFORE DELETE"
+end
+]]>
+  </CreateProcedureSQL>
+</SQLStoredProcedureSpec>
