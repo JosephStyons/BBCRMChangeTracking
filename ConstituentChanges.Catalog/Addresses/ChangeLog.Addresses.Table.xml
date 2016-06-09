@@ -1,0 +1,17 @@
+﻿<TableSpec
+  xmlns="bb_appfx_table"
+  xmlns:c="bb_appfx_commontypes"
+  ID="535C614A-4ADE-4AC6-9014-35539F63C834"
+  Name="Changed Addresses"
+  Description="Stores information about changed address records"
+  Author="Joseph Styons"
+  Tablename="USR_CHANGELOG_ADDRESS"
+  IsBuiltIn="false"
+  WarnOnMissingIndexes="false"
+  >
+  <Fields>
+    <ForeignKeyField Name="ADDRESSID" ForeignTable="ADDRESS"/>
+    <TextField Name="CHANGETYPE" Length="100"/>
+    <TextField Name="MESSAGE" Length="4000"/>
+  </Fields>
+</TableSpec>

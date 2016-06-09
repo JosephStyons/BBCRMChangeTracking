@@ -1,0 +1,16 @@
+﻿<TableSpec
+  xmlns="bb_appfx_table"
+  xmlns:c="bb_appfx_commontypes"
+  ID="42d13611-6fae-4b46-b8b9-917281b17c95"
+  Name="Global Change Status"
+  Description="Stores information about record changes records"
+  Author="Joseph Styons"
+  Tablename="USR_CHANGELOG_GLOBALCHANGESTATUS"
+  IsBuiltIn="false"
+  >
+  <Fields>
+    <ForeignKeyField Name="GLOBALCHANGECATALOGID" ForeignTable="GLOBALCHANGECATALOG"/>
+    <DateField Name="LAST_START_DATE"/>
+    <DateField Name="LAST_FINISH_DATE"/>
+  </Fields>
+</TableSpec>

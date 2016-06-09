@@ -1,0 +1,35 @@
+﻿<SQLStoredProcedureSpec
+  xmlns="bb_appfx_sqlstoredprocedure"
+  xmlns:c="bb_appfx_commontypes" 
+  ID="DAA93EF3-7136-4BDA-A9E9-7E4447C8A9FB"
+  Name="USR_USP_RECORD_ADDRESS_CHANGE"
+  Description="Process a changed address"
+  Author="Joseph Styons"
+  SPName="USR_USP_RECORD_ADDRESS_CHANGE"
+  >
+
+	<CreateProcedureSQL>
+		<![CDATA[
+create procedure dbo.USR_USP_RECORD_ADDRESS_CHANGE
+(
+  @ID uniqueidentifier output
+ ,@ADDRESSID uniqueidentifier
+ ,@CHANGETYPE nvarchar(100)
+ ,@CHANGEAGENTID uniqueidentifier
+)
+as
+begin
+  --accept the ID of a constituent who has changed.
+  --do something to record the change.
+  
+  set @id = isnull(@id,newid());
+  declare @now datetime = getdate();
+
+  INSERT INTO dbo.USR_CHANGELOG_ADDRESS
+    (ID,ADDRESSID,MESSAGE,CHANGETYPE,ADDEDBYID,CHANGEDBYID,DATEADDED,DATECHANGED)
+  VALUES
+    (@ID,@ADDRESSID,'Change recorded',@CHANGETYPE,@CHANGEAGENTID,@CHANGEAGENTID,@NOW,@NOW);
+end
+		]]>
+	</CreateProcedureSQL>
+</SQLStoredProcedureSpec>

@@ -1,0 +1,110 @@
+﻿<GlobalChangeSpec
+  xmlns="bb_appfx_globalchange"
+  xmlns:c="bb_appfx_commontypes"
+  ID="6613133A-A320-41A1-A954-4A3E075F65B3"
+  Name="Track Changes: Addresses"
+  Description="Looks for changes to constituent records and logs them"
+  Author="Joseph Styons"
+  DisplayName="Track Changes: Addresses"
+  GlobalChangeFolder="Change Trackers"
+  SPName="USP_GLOBALCHANGE_TRACKCONSTITUENTCHANGES"
+  >
+
+  <CreateProcedureSQL>
+    <![CDATA[
+create procedure dbo.USP_GLOBALCHANGE_TRACKCONSTITUENTCHANGES
+(
+  @CHANGEAGENTID uniqueidentifier = null
+ ,@ASOF as datetime = null
+ ,@NUMBERADDED int = 0 output
+ ,@NUMBEREDITED int = 0 output
+ ,@NUMBERDELETED int = 0 output
+ ,@HOURSAGO int
+)
+as
+begin
+  set nocount on; 
+  declare @GLOBALCHANGECATALOGID uniqueidentifier = 'a73c2bf5-a742-44de-ae20-011b5b5b0ccb';
+  declare @CURRENTDATE datetime = getdate();  
+  declare @since datetime;
+
+  --if they specified a # of hours ago, use that.
+  --otherwise, just do everythign since the last time we ran.
+  if @HOURSAGO <> 0
+  begin
+    set @since = getdate() - (@hoursago / 24.0);
+  end
+  else
+  begin
+    select @since = LAST_START_DATE
+    from USR_CHANGELOG_GLOBALCHANGESTATUS
+    where globalchangecatalogid = @GLOBALCHANGECATALOGID;
+  end
+  
+	if @CHANGEAGENTID is null
+    exec dbo.USP_CHANGEAGENT_GETORCREATECHANGEAGENT @CHANGEAGENTID output;
+
+  --record our start time for future reference
+  update USR_CHANGELOG_GLOBALCHANGESTATUS
+  set
+    LAST_START_DATE = @CURRENTDATE
+   ,CHANGEDBYID = @CHANGEAGENTID
+   ,DATECHANGED = @CURRENTDATE
+  where globalchangecatalogid = @GLOBALCHANGECATALOGID;
+
+
+  begin try
+    set nocount on;
+    if object_id('tempdb..#TMP_CHANGELOG') is not null drop table #TMP_CHANGELOG;
+    create table #TMP_CHANGELOG
+    (
+      RECORDID uniqueidentifier
+     ,CHANGETYPE nvarchar(100)
+    )
+    declare @RECORDID uniqueidentifier;
+    declare @CHANGETYPE nvarchar(100);
+    
+    insert into #TMP_CHANGELOG
+    exec dbo.USR_USP_CHANGED_ADDRESSES @since
+    set @NUMBERADDED = @@rowcount;
+    set @NUMBEREDITED = 0;
+    set @NUMBERDELETED = 0;
+    
+    declare LOOPER cursor forward_only for select RECORDID, changetype from #TMP_CHANGELOG;
+    open LOOPER
+    fetch next from LOOPER into @RECORDID, @CHANGETYPE
+    WHILE @@FETCH_STATUS <> -1
+    begin
+      IF @@FETCH_STATUS <> -2
+      begin
+        declare @id uniqueidentifier = newid();
+        exec dbo.USR_USP_RECORD_ADDRESS_CHANGE @ID output, @RECORDID, @CHANGETYPE, @CHANGEAGENTID;
+      end
+      fetch next from LOOPER into @RECORDID, @CHANGETYPE
+    end
+    CLOSE LOOPER;
+    DEALLOCATE LOOPER;
+	end try
+	begin catch
+    exec dbo.USP_RAISE_ERROR;
+    return 1;
+  end catch
+  
+  --record our end time for future reference
+  update USR_CHANGELOG_GLOBALCHANGESTATUS
+  set
+    LAST_FINISH_DATE = @CURRENTDATE
+   ,CHANGEDBYID = @CHANGEAGENTID
+   ,DATECHANGED = @CURRENTDATE
+  where globalchangecatalogid = @GLOBALCHANGECATALOGID;  
+end
+]]>
+  </CreateProcedureSQL>
+  <ParametersFormMetaData>
+    <FormMetaData xmlns="bb_appfx_commontypes">
+      <FormFields>
+        <FormField FieldID="HOURSAGO" Caption="Changes in the last X hours (0 means 'since last run')" DataType="Integer" DefaultValueText="0"/>
+      </FormFields>
+    </FormMetaData>
+  </ParametersFormMetaData>
+</GlobalChangeSpec>

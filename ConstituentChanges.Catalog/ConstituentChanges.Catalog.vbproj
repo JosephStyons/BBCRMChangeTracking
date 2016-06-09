@@ -32,7 +32,8 @@
     <CodeAnalysisRules>
     </CodeAnalysisRules>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>Catalog.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -45,7 +46,8 @@
     </DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>Catalog.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
@@ -85,9 +87,6 @@
     <EmbeddedResource Include="Constituents\USR_USP_CHANGED_CONSTITUENTS.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Catalog.ruleset" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Constituents\TrackConstituentChanges.GlobalChange.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -99,10 +98,12 @@
     <EmbeddedResource Include="Constituents\USR_USP_RECORD_CONSTITUENT_CHANGE.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ConstituentChanges.Package.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="performance debugging script.sql" />
+    <EmbeddedResource Include="Addresses\RecordChanges.Addresses.GlobalChange.xml" />
+    <EmbeddedResource Include="Addresses\ChangeLog.Addresses.Table.xml" />
+    <EmbeddedResource Include="Addresses\GetChangedAddresses.StoredProcedure.xml" />
+    <EmbeddedResource Include="Addresses\ChangeLog.Addresses.StoredProcedure.xml" />
+    <EmbeddedResource Include="Shared items\RecordChanges.GlobalChangeStatus.Table.xml" />
+    <Content Include="sql\performance debugging script.sql" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
