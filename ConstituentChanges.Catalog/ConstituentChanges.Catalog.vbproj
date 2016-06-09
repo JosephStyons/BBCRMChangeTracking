@@ -82,25 +82,32 @@
     <Compile Include="My Project\AssemblyInfo.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Stored Procedures\USR_USP_CHANGED_CONSTITUENTS.xml" />
+    <EmbeddedResource Include="Constituents\USR_USP_CHANGED_CONSTITUENTS.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Catalog.ruleset" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Global Changes\TrackConstituentChanges.GlobalChange.xml" />
+    <EmbeddedResource Include="Constituents\TrackConstituentChanges.GlobalChange.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Tables\ChangedConstituents.Table.xml" />
+    <EmbeddedResource Include="Constituents\ChangedConstituents.Table.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Stored Procedures\USR_USP_RECORD_CONSTITUENT_CHANGE.xml" />
+    <EmbeddedResource Include="Constituents\USR_USP_RECORD_CONSTITUENT_CHANGE.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ConstituentChanges.Package.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="suggested global change.sql" />
+    <Content Include="performance debugging script.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Global Changes\" />
+    <Folder Include="Stored Procedures\" />
+    <Folder Include="Tables\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
